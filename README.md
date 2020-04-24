@@ -25,15 +25,14 @@ Pipeline is build using the helper functions in the template to process the imag
 
 One of the test image is used to explain the pipeline.
 
-Figure_1: Test image
+![Test image](/examples/steps/1.jpg)
 
 1.1. Grayscale the input image
 
 In the first step, original image [3-dimensional] is converted to greyscale image [1-demnsional]. In a greyscale image 0 represents Black, 255 represents White and values in between are shades ranging from black to white.
 
-2
+![Gray scaled image of test image](/examples/steps/2.jpg)
 
-Figure_2: gray scaled image of test image
 1.2. Gaussian smoothing the Gray Image
 To suppress the noisy and erroneous gradient, grey image is processed with Gaussian Blur. It is recommended to use odd values for kernel size [k = 3, 5, 7...], in this pipeline kernel size of 3 is used.
 Figure_3: Blurred Image
