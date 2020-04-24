@@ -33,7 +33,7 @@ Fig 1: Test Image
 In the first step, original image [3-dimensional] is converted to greyscale image [1-demnsional]. In a greyscale image 0 represents Black, 255 represents White and values in between are shades ranging from black to white.
 
 ![](/examples/steps/2.jpg)
-Fig 3: Gray scaled image of test image
+Fig 2: Gray scaled image of test image
 
 #### 1.2. Gaussian smoothing the Gray Image
 
@@ -49,14 +49,14 @@ This algorithm computes gradient of the image and the brightness in the image in
 Canny edge detection has its own Gaussian smoothing with kernel size of 5, still it is recommended to use additional GausianBlur in previous step.
 
 ![](/examples/steps/4.jpg)
-Figure_4: Image with edge detected
+Fig 4: Image with edge detected
 
 #### 1.4. Find region of Interest on the image
 
 From the edge detected image select only the region which will correspond to the lanes lines between which Vehicle is expected to be travelling. In an image Origin (0,0) is at left-top, x-axis is left to right and y-axis is top to bottom. As we know image size is 960x540, region of interest is selected from the vehicle point of view with vertices (60,539),(420, 335), (540, 335), (890,539).
 
 ![](/examples/steps/5.jpg)
-Figure_5: Edge detected image is masked to region of interest
+Fig 5: Edge detected image is masked to region of interest
 
 #### 1.5. Identify and Draw Lane Lines
 
@@ -65,7 +65,7 @@ Figure_5: Edge detected image is masked to region of interest
 OpenCV HoughLinesp() is used to find all possible lines in region of interest. Parameters of value rho = 1 pixel, theta = pi/180 [1 degree], line threshold=15 [number of points on a line], Min line length of 40 pixels and max gap between lines of 20 pixels are used to run. All identified lines with thickness of 1 are drawn on black image in Red colour and this image merged to test image is shown below.
 
 ![](/examples/steps/6.jpg)
-Figure_6: Lines detected by Hough Transform and the lines drawn on Test Image.
+Fig 6: Lines detected by Hough Transform and the lines drawn on Test Image.
 
 **1.5.2. Averaging and Extrapolation**
 As the Requirement_3 requires one solid line to be drawn on left and right lane lines. The draw_lines() function is modified such that lines are passed on to additional function find_lneLines() where following steps were done.
@@ -78,16 +78,27 @@ Slope is 0 for vertical line, x/0 for horizontal line, negative for left lane an
 Two sold lines determined from all identified Hough lines are shown below.
 
 ![](/examples/steps/7.jpg)
-Figure_7: Two solid lines averaged and extrapolated from Hough lines
+Fig 7: Two solid lines averaged and extrapolated from Hough lines
 
 Thickness of final lines are increased and merged with test image.
 
 ![](/examples/steps/8.jpg)
-Figure_8: Output image of pipeline
+Fig 8: Output image of pipeline
 
-## 2. Shortcomings with your current pipeline
+### 1.6 Video processed
+![](/examples/steps/solidWhiteRight_0.gif)
+
+First video processed with code to find lane lines.
+![](/examples/steps/solidWhiteRight_1.gif)
+
+![](/examples/steps/solidYellowLeft_0.gif)
+
+Second video processed with code to find lane lines.
+![](/examples/steps/solidYellowLeft_1.gif)
+
+### 2. Shortcomings with your current pipeline
   1. Pipeline not working for curved road with same parameter values.
   2. In few frames of "solidYelloLeft.mp4" code failed with an error, as no right Hough lines were detected in those frames it lead to "division by Zero". So additional check was done to draw a solid left or right line only when atleast one left or right Hough line is detected. Which means there could be frames in output video where left, right or both lines could be missing which are not visible to human eyes.
 
-## 3. Suggest possible improvements to your pipeline
+### 3. Suggest possible improvements to your pipeline
 Lane lines are shaken which can be improved.
