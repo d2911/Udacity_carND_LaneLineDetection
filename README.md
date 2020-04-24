@@ -68,6 +68,7 @@ OpenCV HoughLinesp() is used to find all possible lines in region of interest. P
 Fig 6: Lines detected by Hough Transform and the lines drawn on Test Image.
 
 **1.5.2. Averaging and Extrapolation**
+
 As the Requirement_3 requires one solid line to be drawn on left and right lane lines. The draw_lines() function is modified such that lines are passed on to additional function find_lneLines() where following steps were done.
   1. slope, Y-Intercept and length of line segment are calculated using mathematical formulas.
 Slope is 0 for vertical line, x/0 for horizontal line, negative for left lane and positive for right lane
@@ -89,11 +90,13 @@ Fig 8: Output image of pipeline
 ![](/examples/steps/solidWhiteRight_0.gif)
 
 First video processed with code to find lane lines.
+
 ![](/examples/steps/solidWhiteRight_1.gif)
 
 ![](/examples/steps/solidYellowLeft_0.gif)
 
 Second video processed with code to find lane lines.
+
 ![](/examples/steps/solidYellowLeft_1.gif)
 
 ### 2. Shortcomings with your current pipeline
@@ -101,4 +104,4 @@ Second video processed with code to find lane lines.
   2. In few frames of "solidYelloLeft.mp4" code failed with an error, as no right Hough lines were detected in those frames it lead to "division by Zero". So additional check was done to draw a solid left or right line only when atleast one left or right Hough line is detected. Which means there could be frames in output video where left, right or both lines could be missing which are not visible to human eyes.
 
 ### 3. Suggest possible improvements to your pipeline
-Lane lines are shaken which can be improved.
+  Lane lines are shaken which can be improved.
